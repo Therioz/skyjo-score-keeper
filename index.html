@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Skyjo Marcador</title>
+  <meta name="theme-color" content="#1b2a4a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Skyjo">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="app">
+    <!-- Pantalla 1: jugadores -->
+    <section id="screen-setup" class="screen" hidden>
+      <h1>Skyjo</h1>
+      <p class="subtitle">Añade entre 2 y 8 jugadores</p>
+      <ol id="player-list" class="player-list"></ol>
+      <button id="btn-add-player" class="btn btn-secondary" type="button">+ Añadir jugador</button>
+      <p id="setup-error" class="error" role="alert"></p>
+      <button id="btn-start" class="btn btn-primary" type="button">Empezar partida</button>
+    </section>
+
+    <!-- Pantalla 2: marcador -->
+    <section id="screen-board" class="screen" hidden>
+      <header class="board-header">
+        <h1 id="round-title">Ronda 1</h1>
+        <button id="btn-menu-reset" class="btn btn-ghost" type="button">Reiniciar</button>
+      </header>
+      <div id="game-over" class="game-over" hidden>
+        <p id="game-over-loser" class="loser"></p>
+        <p id="game-over-winner" class="winner"></p>
+      </div>
+      <ol id="leaderboard" class="leaderboard"></ol>
+      <div class="board-actions">
+        <button id="btn-add-round" class="btn btn-primary" type="button">Añadir ronda</button>
+        <button id="btn-play-again" class="btn btn-primary" type="button" hidden>Jugar otra vez</button>
+        <button id="btn-history" class="btn btn-secondary" type="button">Historial</button>
+      </div>
+    </section>
+
+    <!-- Pantalla 3: introducir ronda -->
+    <section id="screen-round" class="screen" hidden>
+      <h1 id="round-form-title">Ronda 1</h1>
+      <p class="subtitle">Puntos de cada jugador en esta ronda</p>
+      <form id="round-form" novalidate>
+        <ol id="round-inputs" class="round-inputs"></ol>
+        <p id="round-error" class="error" role="alert"></p>
+        <div class="form-actions">
+          <button id="btn-cancel-round" class="btn btn-secondary" type="button">Cancelar</button>
+          <button class="btn btn-primary" type="submit">Guardar</button>
+        </div>
+        <button id="btn-delete-round" class="btn btn-danger-ghost" type="button" hidden>Borrar esta ronda</button>
+      </form>
+    </section>
+
+    <!-- Pantalla 4: historial -->
+    <section id="screen-history" class="screen" hidden>
+      <header class="board-header">
+        <h1>Historial</h1>
+        <button id="btn-close-history" class="btn btn-ghost" type="button">Volver</button>
+      </header>
+      <p class="subtitle">Toca una ronda para corregirla</p>
+      <div class="table-wrap">
+        <table id="history-table" class="history-table"></table>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="dialog-reset" class="dialog">
+    <h2>¿Reiniciar la partida?</h2>
+    <p>Se borrarán todos los puntos.</p>
+    <div class="dialog-actions">
+      <button id="btn-reset-keep" class="btn btn-primary" type="button">Misma gente, nueva partida</button>
+      <button id="btn-reset-all" class="btn btn-danger" type="button">Borrar todo (nuevos jugadores)</button>
+      <button id="btn-reset-cancel" class="btn btn-secondary" type="button">Cancelar</button>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
